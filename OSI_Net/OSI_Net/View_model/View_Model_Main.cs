@@ -1,6 +1,8 @@
-﻿using OSI_Net.Code;
+﻿ using OSI_Net.Code;
+using OSI_Net.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,10 @@ namespace OSI_Net.View_model
 {
     class View_Model_Main: View_Model_Base
     {
+      
+
+  
+
         #region variables
 
         #region path_for_file
@@ -107,11 +113,30 @@ namespace OSI_Net.View_model
 
         #endregion UpDown
 
+        My_Files my_db;
         #endregion variables
 
 
 
         #region Func
+        public View_Model_Main()
+        {
+            my_db = new My_Files();
+
+            Info_file t = new Info_file();
+            t.Info_fileId = 1;
+            t.Date = new DateTime(1, 1, 1);
+            t.Name = "test1";
+            t.Path_Net = "Path_Net_test1";
+            t.Path_PC = "Path_PC_test1";
+            t.Status = 4;
+            my_db.Info_file.Add(t);
+
+            foreach (var i in my_db.Info_file)
+            {
+                List_file.Add(i);
+            }
+        }
 
         #endregion Func
 
@@ -290,6 +315,24 @@ namespace OSI_Net.View_model
         #endregion delete Download
         #endregion Command
 
+
+        #region List
+
+        ObservableCollection<Info_file> list_file = new ObservableCollection<Info_file>();
+
+        ObservableCollection<Info_file> List_file
+        {
+            set
+            {
+                list_file = value;
+                OnPropertyChanged(nameof(list_file));
+            }
+            get
+            {
+                return list_file;
+            }
+        }
+        #endregion List
 
     }
 }

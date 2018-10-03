@@ -76,6 +76,7 @@
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\DelegateCommand.cs" />
     <Compile Include="Code\Status.cs" />
+    <Compile Include="Model\Info_file.cs" />
     <Compile Include="Model\My_Files.cs" />
     <Compile Include="View_model\View_Model_Base.cs" />
     <Compile Include="View_model\View_Model_Main.cs" />
