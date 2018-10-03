@@ -1,26 +1,88 @@
-﻿<Window x:Class="OSI_Net.MainWindow"
+﻿<Controls:MetroWindow x:Class="OSI_Net.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OSI_Net"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="437" Width="710">
     <Grid>
-        <WrapPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+           
+            <Grid >
+
+
+                <!--<ListView SelectedItem="{Binding Select_item_final, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   ItemsSource="{Binding Link_final ,IsAsync=True , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                                Grid.Row="1"  SelectionMode="Single">
+                    <ListView.View >
+                        <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Employee Information" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Name ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="100"/>
+
+
+
+
+                        <GridViewColumn DisplayMemberBinding="{Binding Status ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Status" Width="100"/>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Date ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date" Width="100"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Type , UpdateSourceTrigger=PropertyChanged}" Header="Path for file" Width="200"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Type , UpdateSourceTrigger=PropertyChanged}" Header="Path in the internet" Width="200"/>
+
+
+
+                    </GridView>
+                    </ListView.View>
+
+
+                </ListView>-->
+
+            <DataGrid  CanUserAddRows="False"  ItemsSource="{Binding lsit}" AutoGenerateColumns="False">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name"  Width="100" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Status" Width="100" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Path for file"  Width="200" Binding="{Binding Path_for_file}"/>
+                    <DataGridTextColumn Header="Path in internet" Width="200" Binding="{Binding Path_in_internet}"/>
+                  
+                </DataGrid.Columns>
+            </DataGrid>
             </Grid>
-            <Grid>
-                
-            </Grid>
-            <Grid>
-                
-            </Grid>
-        </WrapPanel>
+       
+            <Grid  Grid.Row="1">
+            <ScrollViewer>
+            <StackPanel  >
+               
+                    <WrapPanel HorizontalAlignment="Center">
+                    <StackPanel  Orientation="Horizontal" >
+                    <TextBlock VerticalAlignment="Center" Width="auto" Text="Path for file:" DockPanel.Dock="Left" />
+                    <TextBox Margin="5" Width="150"/>
+                    <Button Content="Open..." Margin="0,5,5,5"/>
+                        </StackPanel>
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock VerticalAlignment="Center" Width="auto" Text="Path in internet:" DockPanel.Dock="Left" />
+                        <TextBox Margin="5" Width="150"/>
+                        <Button Content="Open..." Margin="0,5,5,5"/>
+                    </StackPanel>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <TextBlock Text="Flows: " VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtNum" Margin="5,5,0,5" Width="50" Text="{Binding NumValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Command="{Binding Button_up_product}"  Margin="5,5,0,5" Content="˄" Width="20"  />
+                        <Button Command="{Binding Button_down_product}"  Margin="0,5,0,5"  Content="˅" Width="20"  />
+                    </StackPanel>
+                        <Button Content="Download" Margin="5"/>
+                </WrapPanel>
+                  
+            </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
     </Grid>
-</Window>
+</Controls:MetroWindow>
