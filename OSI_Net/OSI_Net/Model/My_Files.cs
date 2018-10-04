@@ -15,7 +15,9 @@ namespace OSI_Net.Model
         
         public DbSet<Info_file> Info_file { get; set; }
 
-
+        public My_Files()
+           : base("My_Files")
+        { }
 
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

@@ -124,7 +124,7 @@ namespace OSI_Net.View_model
             my_db = new My_Files();
 
             Info_file t = new Info_file();
-            t.Info_fileId = 1;
+        
             t.Date = new DateTime(1, 1, 1);
             t.Name = "test1";
             t.Path_Net = "Path_Net_test1";
