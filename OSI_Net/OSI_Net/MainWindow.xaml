@@ -42,7 +42,7 @@
 
                 </ListView>-->
 
-            <DataGrid  CanUserAddRows="False"  ItemsSource="{Binding List_file}" AutoGenerateColumns="False">
+            <DataGrid  CanUserAddRows="False"  ItemsSource="{Binding Path= List_file}" AutoGenerateColumns="False">
                   <DataGrid.Columns>
                     <DataGridTextColumn Header="Name"  Width="100" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Status" Width="100" Binding="{Binding Status}"/>
@@ -51,6 +51,7 @@
                     <DataGridTextColumn Header="Path in internet" Width="200" Binding="{Binding Path_Net}"/>
                   
                 </DataGrid.Columns>
+              
             </DataGrid>
             </Grid>
        

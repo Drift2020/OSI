@@ -3,9 +3,12 @@ using OSI_Net.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OSI_Net.View_model
@@ -113,6 +116,8 @@ namespace OSI_Net.View_model
 
         #endregion UpDown
 
+       
+
         My_Files my_db;
         #endregion variables
 
@@ -123,14 +128,14 @@ namespace OSI_Net.View_model
         {
             my_db = new My_Files();
 
-            Info_file t = new Info_file();
-        
-            t.Date = new DateTime(1, 1, 1);
-            t.Name = "test1";
-            t.Path_Net = "Path_Net_test1";
-            t.Path_PC = "Path_PC_test1";
-            t.Status = 4;
-            my_db.Info_file.Add(t);
+            //Info_file t = new Info_file();
+            //t.Name = "ddd";
+            //t.Date = DateTime.Now;
+            //t.Path_Net = "Path_Net_test1";
+            //t.Path_PC = "Path_PC_test1";
+            //t.Status = 4;
+            //my_db.Info_file.Add(t);
+            //my_db.SaveChanges();
 
             foreach (var i in my_db.Info_file)
             {
@@ -138,6 +143,42 @@ namespace OSI_Net.View_model
             }
         }
 
+        public async void  Download()
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    // URI, определяющий интернет-ресурс 
+                    // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
+                    string h = path_in_internet;
+
+                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
+
+                    // Получим ответ на интернет-запрос
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    // Возвращаем поток данных из полученного интернет-ресурса.
+                    Stream stream = response.GetResponseStream();
+                    byte[] b = new byte[response.ContentLength];
+                    int c = 0;
+                    int i = 0;
+                    while ((c = stream.ReadByte()) != -1)
+                    {
+                        b[i++] = (byte)c;
+                    }
+                    // сохраняем полученные данные в файл
+                    FileStream st = new FileStream(path_for_file, FileMode.OpenOrCreate);
+                    BinaryWriter writer = new BinaryWriter(st);
+                    writer.Write(b);
+                    writer.Close();
+                    MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+        }
         #endregion Func
 
 
@@ -233,11 +274,14 @@ namespace OSI_Net.View_model
         }
         private void Execute_download(object o)
         {
-
+            Download();
         }
         private bool CanExecute_download(object o)
         {
+            if (path_for_file != null && path_for_file.Length > 0
+                && path_in_internet != null && path_in_internet.Length>0)
             return true;
+            return false;
         }
 
         #endregion Download
@@ -320,7 +364,7 @@ namespace OSI_Net.View_model
 
         ObservableCollection<Info_file> list_file = new ObservableCollection<Info_file>();
 
-        ObservableCollection<Info_file> List_file
+        public ObservableCollection<Info_file> List_file
         {
             set
             {
