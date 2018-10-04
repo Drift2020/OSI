@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace OSI_Net.View_model
@@ -145,40 +146,67 @@ namespace OSI_Net.View_model
 
         public async void  Download()
         {
+            //await Task.Run(() =>
+            //{
+            //    try
+            //    {
+            //        // URI, определяющий интернет-ресурс 
+            //        // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
+            //        string h = path_in_internet;
+
+            //        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
+
+            //        // Получим ответ на интернет-запрос
+            //        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            //        // Возвращаем поток данных из полученного интернет-ресурса.
+            //        Stream stream = response.GetResponseStream();
+            //        byte[] b = new byte[response.ContentLength];
+            //        int c = 0;
+            //        int i = 0;
+            //        while ((c = stream.ReadByte()) != -1)
+            //        {
+            //            b[i++] = (byte)c;
+            //        }
+
+
+            //        // сохраняем полученные данные в файл
+            //        FileStream st = new FileStream(i1.Value, FileMode.OpenOrCreate);
+            //        BinaryWriter writer = new BinaryWriter(st);
+            //        writer.Write(b);
+            //        writer.Close();
+            //        System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        System.Windows.MessageBox.Show(ex.Message);
+            //    }
+            //});
+
+
             await Task.Run(() =>
             {
                 try
                 {
-                    // URI, определяющий интернет-ресурс 
-                    // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
-                    string h = path_in_internet;
+                    string siteURL = path_in_internet;
+                    WebClient client = new WebClient();
 
-                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
-
-                    // Получим ответ на интернет-запрос
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    // Возвращаем поток данных из полученного интернет-ресурса.
-                    Stream stream = response.GetResponseStream();
-                    byte[] b = new byte[response.ContentLength];
-                    int c = 0;
-                    int i = 0;
-                    while ((c = stream.ReadByte()) != -1)
-                    {
-                        b[i++] = (byte)c;
-                    }
-                    // сохраняем полученные данные в файл
-                    FileStream st = new FileStream(path_for_file, FileMode.OpenOrCreate);
-                    BinaryWriter writer = new BinaryWriter(st);
-                    writer.Write(b);
-                    writer.Close();
-                    MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
+                    // Копируем Web-ресурс из RemoteURL
+                    Stream stmData = client.OpenRead(siteURL);
+                    StreamReader srData = new StreamReader(stmData, Encoding.UTF8);
+                    FileInfo fiData = new FileInfo("../../dou.html");
+                    StreamWriter st = fiData.CreateText(); // создаем новый файл
+                    st.WriteLine(srData.ReadToEnd()); // записываем в него строку
+                    st.Close();
+                    stmData.Close();
+                    System.Windows.MessageBox.Show("Файл успешно загружен!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    System.Windows.MessageBox.Show(ex.Message);
                 }
             });
         }
+
         #endregion Func
 
 
@@ -200,7 +228,11 @@ namespace OSI_Net.View_model
         }
         private void Execute_open_for_file(object o)
         {
-          
+            using (FolderBrowserDialog tmp_view = new FolderBrowserDialog())
+            {
+                tmp_view.ShowDialog();
+                Path_for_file = tmp_view.SelectedPath;
+            }
         }
         private bool CanExecute_open_for_file(object o)
         {
