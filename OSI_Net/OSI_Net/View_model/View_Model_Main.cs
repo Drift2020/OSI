@@ -192,6 +192,7 @@ namespace OSI_Net.View_model
 
                     // Копируем Web-ресурс из RemoteURL
                     Stream stmData = client.OpenRead(siteURL);
+                    
                     StreamReader srData = new StreamReader(stmData, Encoding.UTF8);
                     FileInfo fiData = new FileInfo("../../dou.html");
                     StreamWriter st = fiData.CreateText(); // создаем новый файл
