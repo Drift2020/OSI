@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -146,66 +147,74 @@ namespace OSI_Net.View_model
 
         public async void  Download()
         {
-            //await Task.Run(() =>
-            //{
-            //    try
-            //    {
-            //        // URI, определяющий интернет-ресурс 
-            //        // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
-            //        string h = path_in_internet;
-
-            //        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
-
-            //        // Получим ответ на интернет-запрос
-            //        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //        // Возвращаем поток данных из полученного интернет-ресурса.
-            //        Stream stream = response.GetResponseStream();
-            //        byte[] b = new byte[response.ContentLength];
-            //        int c = 0;
-            //        int i = 0;
-            //        while ((c = stream.ReadByte()) != -1)
-            //        {
-            //            b[i++] = (byte)c;
-            //        }
-
-
-            //        // сохраняем полученные данные в файл
-            //        FileStream st = new FileStream(i1.Value, FileMode.OpenOrCreate);
-            //        BinaryWriter writer = new BinaryWriter(st);
-            //        writer.Write(b);
-            //        writer.Close();
-            //        System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Windows.MessageBox.Show(ex.Message);
-            //    }
-            //});
-
-
             await Task.Run(() =>
             {
                 try
                 {
-                    string siteURL = path_in_internet;
-                    WebClient client = new WebClient();
+                    // URI, определяющий интернет-ресурс 
+                    // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
+                    string h = path_in_internet;
 
-                    // Копируем Web-ресурс из RemoteURL
-                    Stream stmData = client.OpenRead(siteURL);
-                    
-                    StreamReader srData = new StreamReader(stmData, Encoding.UTF8);
-                    FileInfo fiData = new FileInfo("../../dou.html");
-                    StreamWriter st = fiData.CreateText(); // создаем новый файл
-                    st.WriteLine(srData.ReadToEnd()); // записываем в него строку
-                    st.Close();
-                    stmData.Close();
-                    System.Windows.MessageBox.Show("Файл успешно загружен!");
+                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
+
+                    // Получим ответ на интернет-запрос
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    // Возвращаем поток данных из полученного интернет-ресурса.
+                    Stream stream = response.GetResponseStream();
+                    byte[] b = new byte[response.ContentLength];
+                    int c = 0;
+                    int i = 0;
+                    while ((c = stream.ReadByte()) != -1)
+                    {
+                        b[i++] = (byte)c;
+                    }
+
+
+                    // сохраняем полученные данные в файл
+                    FileStream st = new FileStream(i1.Value, FileMode.OpenOrCreate);
+                    BinaryWriter writer = new BinaryWriter(st);
+                    writer.Write(b);
+                    writer.Close();
+                    System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
                 }
                 catch (Exception ex)
                 {
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             });
+
+
+            //await Task.Run(() =>
+            //{
+            //    try
+            //    {
+
+                  
+
+            //        string siteURL = path_in_internet;
+            //        WebClient client = new WebClient();
+
+            //        // Копируем Web-ресурс из RemoteURL
+            //        Stream stmData = client.OpenRead(siteURL);
+
+            //        string header_contentDisposition = client.ResponseHeaders["content-disposition"];
+            //        string filename = new ContentDisposition(header_contentDisposition).FileName;
+
+
+
+            //        StreamReader srData = new StreamReader(stmData, Encoding.UTF8);
+            //        FileInfo fiData = new FileInfo(path_for_file + filename);
+            //        StreamWriter st = fiData.CreateText(); // создаем новый файл
+            //        st.WriteLine(srData.ReadToEnd()); // записываем в него строку
+            //        st.Close();
+            //        stmData.Close();
+            //        System.Windows.MessageBox.Show("Файл успешно загружен!");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        System.Windows.MessageBox.Show(ex.Message);
+            //    }
+            //});
         }
 
         #endregion Func
