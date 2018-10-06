@@ -72,12 +72,12 @@
                     </StackPanel>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">
-                    <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                         <TextBlock Text="Flows: " VerticalAlignment="Center"/>
                         <TextBox x:Name="txtNum" Margin="5,5,0,5" Width="50" Text="{Binding NumValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                         <Button Command="{Binding Button_up_product}"  Margin="5,5,0,5" Content="˄" Width="20"  />
                         <Button Command="{Binding Button_down_product}"  Margin="0,5,0,5"  Content="˅" Width="20"  />
-                    </StackPanel>-->
+                    </StackPanel>
                         <Button Command="{Binding Button_clik_download}" Content="Download" Margin="5"/>
                 </WrapPanel>
                   

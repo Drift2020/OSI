@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
@@ -40,7 +41,7 @@ namespace OSI_Net.View_model
         #endregion path_in_internet
 
         #region UpDown
-        private int _numValue = 0;
+        private int _numValue = 1;
 
         public string NumValue
         {
@@ -73,7 +74,7 @@ namespace OSI_Net.View_model
         private void Execute_up_product(object o)
         {
             _numValue += 1;
-
+            OnPropertyChanged(nameof(NumValue));
         }
         private bool CanExecute_up_product(object o)
         {
@@ -103,7 +104,7 @@ namespace OSI_Net.View_model
         private void Execute_down_product(object o)
         {
             _numValue -= 1;
-
+            OnPropertyChanged(nameof(NumValue));
         }
         private bool CanExecute_down_product(object o)
         {
@@ -145,6 +146,8 @@ namespace OSI_Net.View_model
             }
         }
 
+       
+
         public async void  Download()
         {
             await Task.Run(() =>
@@ -154,28 +157,58 @@ namespace OSI_Net.View_model
                     // URI, определяющий интернет-ресурс 
                     // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
                     string h = path_in_internet;
+                    string fileName = Path.GetFileName(path_in_internet);
 
                     HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
-
+                    
                     // Получим ответ на интернет-запрос
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                     // Возвращаем поток данных из полученного интернет-ресурса.
-                    Stream stream = response.GetResponseStream();
-                    byte[] b = new byte[response.ContentLength];
-                    int c = 0;
-                    int i = 0;
-                    while ((c = stream.ReadByte()) != -1)
+                    using (Stream stream = response.GetResponseStream())
                     {
-                        b[i++] = (byte)c;
+                        byte[] b = new byte[response.ContentLength];
+                        int c = 0;
+                        int i = 0;
+
+                        //    while ((c = stream.ReadByte()) != -1)                    
+                        // {
+                        //      b[i++] = (byte)c;
+                        // }
+
+                        Thread[] myThread = new Thread[_numValue];
+                        for (int it = 0; it < _numValue; it++)
+                        {
+                            myThread[i] = new Thread(new ParameterizedThreadStart(Count));
+                            myThread[i].Start(c);
+                        }
+
+
+                        bool is_Next = false;
+                        do {
+                            is_Next = false;
+                            foreach (var tmp in myThread)
+                            {
+                                if (tmp.IsAlive)
+                                    is_Next = true;
+                            }
+
+                        } while (is_Next);
+
+                            //int count = Convert.ToInt32(response.ContentLength);
+
+                            //stream.BeginRead(b, 0, count, null, 1);
+                            //stream.ReadAsync(b, 0, count);
+
+
+                            FileStream st = new FileStream(path_for_file + fileName, FileMode.OpenOrCreate);
+                        using (BinaryWriter writer = new BinaryWriter(st))
+                        {
+                            writer.Write(b);
+
+                            writer.Close();
+                            System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
+                        }
                     }
-
-
-                    // сохраняем полученные данные в файл
-                    FileStream st = new FileStream(i1.Value, FileMode.OpenOrCreate);
-                    BinaryWriter writer = new BinaryWriter(st);
-                    writer.Write(b);
-                    writer.Close();
-                    System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
                 }
                 catch (Exception ex)
                 {
@@ -183,40 +216,24 @@ namespace OSI_Net.View_model
                 }
             });
 
-
-            //await Task.Run(() =>
-            //{
-            //    try
-            //    {
-
-                  
-
-            //        string siteURL = path_in_internet;
-            //        WebClient client = new WebClient();
-
-            //        // Копируем Web-ресурс из RemoteURL
-            //        Stream stmData = client.OpenRead(siteURL);
-
-            //        string header_contentDisposition = client.ResponseHeaders["content-disposition"];
-            //        string filename = new ContentDisposition(header_contentDisposition).FileName;
-
-
-
-            //        StreamReader srData = new StreamReader(stmData, Encoding.UTF8);
-            //        FileInfo fiData = new FileInfo(path_for_file + filename);
-            //        StreamWriter st = fiData.CreateText(); // создаем новый файл
-            //        st.WriteLine(srData.ReadToEnd()); // записываем в него строку
-            //        st.Close();
-            //        stmData.Close();
-            //        System.Windows.MessageBox.Show("Файл успешно загружен!");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Windows.MessageBox.Show(ex.Message);
-            //    }
-            //});
+          
         }
 
+        public static void Count(object x)
+        {
+            Counter n = x as Counter;
+             n.stream.ReadAsync(n.b, 0, n.count);
+        }
+
+        public class Counter
+        {
+            public int Number;
+            public bool isRedy;
+            public int count;
+            public int poz;
+            public byte[] b;
+            public Stream stream;
+        }
         #endregion Func
 
 
@@ -405,6 +422,7 @@ namespace OSI_Net.View_model
         #region List
 
         ObservableCollection<Info_file> list_file = new ObservableCollection<Info_file>();
+        private string defaultFileName="Temp1";
 
         public ObservableCollection<Info_file> List_file
         {
