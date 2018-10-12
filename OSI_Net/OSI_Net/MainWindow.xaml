@@ -42,16 +42,30 @@
 
                 </ListView>-->
 
-            <DataGrid  CanUserAddRows="False"  ItemsSource="{Binding Path= List_file}" AutoGenerateColumns="False">
+            <DataGrid SelectionUnit="FullRow" SelectionMode="Single" 
+                      IsReadOnly="True" CanUserAddRows="False" 
+                      ItemsSource="{Binding Path= List_file}"
+                      AutoGenerateColumns="False"
+                      SelectedItem="Select_elem">
                   <DataGrid.Columns>
                     <DataGridTextColumn Header="Name"  Width="100" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Status" Width="100" Binding="{Binding Status_Now}"/>
+                    <DataGridTextColumn Header="Status" Width="100" Binding="{Binding status_Now}"/>
                     <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date}"/>
                     <DataGridTextColumn Header="Path for file"  Width="200" Binding="{Binding Path_PC}"/>
                     <DataGridTextColumn Header="Path in internet" Width="200" Binding="{Binding Path_Net}"/>
                   
                 </DataGrid.Columns>
-              
+                <DataGrid.ContextMenu>
+                <ContextMenu>
+                        <MenuItem Header="Pause" Command=""></MenuItem>
+                        <MenuItem Header="Stop"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Delete"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Rename"></MenuItem>
+                        <MenuItem Header="Edit path"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
             </Grid>
        

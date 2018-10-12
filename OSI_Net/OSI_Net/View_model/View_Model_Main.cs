@@ -18,9 +18,9 @@ namespace OSI_Net.View_model
 {
     class View_Model_Main : View_Model_Base
     {
+       
 
 
-        public static View_Model_Main my_this;
 
         #region variables
 
@@ -122,6 +122,7 @@ namespace OSI_Net.View_model
         CancellationTokenSource cts;
         public SynchronizationContext uiContext = new SynchronizationContext();
         My_Files my_db;
+        public static View_Model_Main my_this;
         #endregion variables
 
 
@@ -131,17 +132,17 @@ namespace OSI_Net.View_model
         {
             my_db = new My_Files();
             my_this = this;
-              //Info_file t = new Info_file();
-              //t.Name = "ddd";
-              //t.Date = DateTime.Now;
-              //t.Path_Net = "Path_Net_test1";
-              //t.Path_PC = "Path_PC_test1";
-              //t.Status = 4;
-              //my_db.Info_file.Add(t);
-              //my_db.SaveChanges();
+               //Info_file t = new Info_file();
+               //t.Name = "ddd";
+               //t.Date = DateTime.Now;
+               //t.Path_Net = "Path_Net_test1";
+               //t.Path_PC = "Path_PC_test1";
+               //t.Status = 4;
+               //my_db.Info_file.Add(t);
+               //my_db.SaveChanges();
 
 
-              list_file = my_db.Info_file.Select(x => x).ToList();
+               list_file = my_db.Info_file.Select(x => x).ToList();
           
             OnPropertyChanged(nameof(List_file));
         }
@@ -222,18 +223,12 @@ namespace OSI_Net.View_model
                             writer.Write(b);
 
                             writer.Close();
-                           // System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server
-                            foreach (var ip in list_file)
-                            {
-                                if (ip.Info_fileId == tmp.Info_fileId)
-                                {
-                                    var tmp1 = list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status=4;
-                                    ip.Status = 4;
-                                    
-                                    OnPropertyChanged(nameof(List_file));
-                                    break;
-                                }
-                            }
+                         
+                            var tmp1 = list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status=4;
+                                  
+                            list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status_Now = "100";
+                            OnPropertyChanged(nameof(List_file));
+                             
 
                         }
                         #endregion 
@@ -250,15 +245,16 @@ namespace OSI_Net.View_model
 
     
 
-        public  void Count(object x)
+        public static void Count(object x)
         {
             Counter n = x as Counter;
             
             for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++)
             {
                 n._b[i] = (byte)c;
-                n._my_file.Status_Now = i!=0?((i / n._count*100).ToString()):"0";
-           
+                n._my_file.Status_Now = (i!=0?(String.Format("{0:C2}", ((double)i / n._count*100))):"0");
+                my_this. OnPropertyChanged(nameof(List_file));
+              
             }
                         //  n._stream.ReadAsync(n._b, n._poz, n._count);
         }
@@ -401,6 +397,32 @@ namespace OSI_Net.View_model
         }
 
         #endregion Download
+        #region Edit_path
+
+        private DelegateCommand Command_Edit_path;
+        public ICommand Button_clik_Edit_path
+        {
+            get
+            {
+                if (Command_Edit_path == null)
+                {
+                    Command_Edit_path = new DelegateCommand(Execute_Edit_path, CanExecute_Edit_path);
+                }
+                return Command_Edit_path;
+            }
+        }
+        private void Execute_Edit_path(object o)
+        {
+          
+        }
+        private bool CanExecute_Edit_path(object o)
+        {
+          
+                return true;
+          
+        }
+
+        #endregion Download
         #region Pause
 
         private DelegateCommand Command_pause;
@@ -493,6 +515,23 @@ namespace OSI_Net.View_model
                 return new ObservableCollection<Info_file>(list_file);
             }
         }
+
+        Info_file select_elem = null;
+        public Info_file Select_elem
+        {
+            set
+            {
+                select_elem = value;
+                OnPropertyChanged(nameof(Select_elem));
+            }
+            get
+            {
+                if(select_elem!=null)
+                return select_elem;
+                return new Info_file();
+            }
+        }
+
         #endregion List
 
     }
