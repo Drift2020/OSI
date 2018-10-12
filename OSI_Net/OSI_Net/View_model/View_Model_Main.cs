@@ -16,18 +16,18 @@ using System.Windows.Input;
 
 namespace OSI_Net.View_model
 {
-    class View_Model_Main: View_Model_Base
+    class View_Model_Main : View_Model_Base
     {
-      
 
-  
+
+        public static View_Model_Main my_this;
 
         #region variables
 
         #region path_for_file
         string path_for_file = "";
-        public string Path_for_file { set{ path_for_file = value; OnPropertyChanged(nameof(Path_for_file)); }
-        get { return path_for_file; }
+        public string Path_for_file { set { path_for_file = value; OnPropertyChanged(nameof(Path_for_file)); }
+            get { return path_for_file; }
         }
         #endregion path_for_file
 
@@ -119,8 +119,8 @@ namespace OSI_Net.View_model
 
         #endregion UpDown
 
-       
-
+        CancellationTokenSource cts;
+        public SynchronizationContext uiContext = new SynchronizationContext();
         My_Files my_db;
         #endregion variables
 
@@ -130,40 +130,40 @@ namespace OSI_Net.View_model
         public View_Model_Main()
         {
             my_db = new My_Files();
+            my_this = this;
+              //Info_file t = new Info_file();
+              //t.Name = "ddd";
+              //t.Date = DateTime.Now;
+              //t.Path_Net = "Path_Net_test1";
+              //t.Path_PC = "Path_PC_test1";
+              //t.Status = 4;
+              //my_db.Info_file.Add(t);
+              //my_db.SaveChanges();
 
-            //Info_file t = new Info_file();
-            //t.Name = "ddd";
-            //t.Date = DateTime.Now;
-            //t.Path_Net = "Path_Net_test1";
-            //t.Path_PC = "Path_PC_test1";
-            //t.Status = 4;
-            //my_db.Info_file.Add(t);
-            //my_db.SaveChanges();
 
-            foreach (var i in my_db.Info_file)
-            {
-                List_file.Add(i);
-            }
+              list_file = my_db.Info_file.Select(x => x).ToList();
+          
+            OnPropertyChanged(nameof(List_file));
         }
 
-       
 
-        public async void  Download()
+
+        private async void Download()
         {
-            await Task.Run(() =>
-            {
+            cts = new CancellationTokenSource();
+            await Task.Run(() => {
                 try
                 {
                     // URI, определяющий интернет-ресурс 
                     // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
                     string h = path_in_internet;
                     string fileName = Path.GetFileName(path_in_internet);
-                   
-                    fileName = fileName.Split(new char[] {'?'})[0];
-                   
+
+                    fileName = fileName.Split(new char[] { '?' })[0];
+
 
                     HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
-                    
+
                     // Получим ответ на интернет-запрос
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                     // Возвращаем поток данных из полученного интернет-ресурса.
@@ -173,107 +173,70 @@ namespace OSI_Net.View_model
                         byte[] b = new byte[0];// = new byte[full_size];
                         int i;
 
-                        //int c = 0;
-                        //int i = 0;
-
-
-
-                        //    while ((c = stream.ReadByte()) != -1)                    
-                        // {
-                        //      b[i++] = (byte)c;
-                        // }
-                        //создание баз для потоков
-                        // Counter[] my_count = new Counter[_numValue];
                         Counter my_count = new Counter();
 
-                        int tmp_size = Convert.ToInt32( full_size / _numValue);
+
                         long tmp_full_size = full_size;
                         int poz = 0;
 
-                        //for (i = 0; i < my_count.Length - 1; i++)
-                        //{
-                        //my_count[i] = new Counter(i, tmp_size, poz, true, new byte[tmp_size], stream) ;
-                        //    poz += tmp_size;
-                        //    tmp_full_size -= tmp_size;
-                        //}
 
-                        my_count = new Counter(0, Convert.ToInt32(tmp_full_size), poz, true, new byte[tmp_full_size], stream);
+                        #region  создание и запуск потоков
 
-
-
-                        //
-
-                        //создание и запуск потоков
-                        Thread myThread = new Thread(new ParameterizedThreadStart(Count));
-                        myThread.Start(my_count);
                         Info_file tmp = new Info_file();
                         tmp.Date = DateTime.Now;
                         tmp.Name = fileName;
                         tmp.Path_Net = path_in_internet;
                         tmp.Path_PC = path_for_file + fileName;
-                        tmp.Status=1;
-                        List_file.Add(tmp);
-                        OnPropertyChanged(nameof(List_file));
+                        tmp.Status = 1;
                         my_db.Info_file.Add(tmp);
                         my_db.SaveChanges();
-                      
-                      
-                        //Thread[] myThread = new Thread[_numValue];
-                        //for (int it = 0; it < _numValue; it++)
-                        //{
-                        //    myThread[it] = new Thread(new ParameterizedThreadStart(Count));
-                        //    myThread[it].Start(my_count[it]);
-                        //}
-                        //
 
-                        //проверка активности потоков
+                        tmp.Info_fileId = my_db.Info_file.ToList().Last().Info_fileId;
+
+                        uiContext.Send(d =>   list_file.Add(tmp), null);
+                        OnPropertyChanged(nameof(List_file));
+
+                        my_count = new Counter(0, Convert.ToInt32(tmp_full_size), poz, true, new byte[tmp_full_size], stream, tmp);
+                        Thread myThread = new Thread(new ParameterizedThreadStart(Count));
+                        myThread.Start(my_count);
+                        #endregion
+                        #region проверка активности потоков
                         bool is_Next = false;
-                        do {
+                        do
+                        {
                             is_Next = false;
-                          //foreach (var tmp in myThread)
-                          //  {
-                                if (myThread.IsAlive)
-                                    is_Next = true;
-                          //  }
+
+                            if (myThread.IsAlive)
+                                is_Next = true;
 
                         } while (is_Next);
-                        //
-
-
-                        //запись в один байтовый масив
-
-                       // foreach(var elem in my_count)
-                       // {
+                        #endregion
+                        //запись в один байтовый масив                      
                         b = my_count._b.ToArray();
-                       // }
 
-                        //
-
-                         //int count = Convert.ToInt32(response.ContentLength);
-
-                         //stream.BeginRead(b, 0, count, null, 1);
-                         //stream.ReadAsync(b, 0, count);
-
-                        //преобразование в файл
-                            FileStream st = new FileStream(path_for_file + fileName, FileMode.OpenOrCreate);
+                        
+                        #region преобразование в файл
+                        FileStream st = new FileStream(path_for_file + fileName, FileMode.OpenOrCreate);
                         using (BinaryWriter writer = new BinaryWriter(st))
                         {
                             writer.Write(b);
 
                             writer.Close();
-                            System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
-
-                            List_file.Clear();
-                            foreach (var ip in my_db.Info_file)
+                           // System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server
+                            foreach (var ip in list_file)
                             {
-                                List_file.Add(ip);
+                                if (ip.Info_fileId == tmp.Info_fileId)
+                                {
+                                    var tmp1 = list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status=4;
+                                    ip.Status = 4;
+                                    
+                                    OnPropertyChanged(nameof(List_file));
+                                    break;
+                                }
                             }
-                        
 
-                            OnPropertyChanged(nameof(List_file));
-                           
-                       
                         }
+                        #endregion 
                     }
                 }
                 catch (Exception ex)
@@ -282,21 +245,25 @@ namespace OSI_Net.View_model
                 }
             });
 
-          
+
         }
 
-        public static void Count(object x)
+    
+
+        public  void Count(object x)
         {
             Counter n = x as Counter;
             
             for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++)
             {
                 n._b[i] = (byte)c;
+                n._my_file.Status_Now = i!=0?((i / n._count*100).ToString()):"0";
+           
             }
                         //  n._stream.ReadAsync(n._b, n._poz, n._count);
         }
 
-        public class Counter
+        public class Counter : View_Model_Base
         {
             public int _number;
             public bool _isWork;
@@ -304,16 +271,16 @@ namespace OSI_Net.View_model
             public int _poz;
             public byte[] _b;
             public Stream _stream;
-
+            public Info_file _my_file;
            public  Counter()
             {
                 _poz = _count = _number = 0;
                 _stream = null;
                 _isWork = true;
-
+                _my_file = null;
 
             }
-            public Counter(int number, int count, int poz, bool isWork, byte[] b,Stream stream)
+            public Counter(int number, int count, int poz, bool isWork, byte[] b,Stream stream, Info_file my_file)
             {
                 _poz = poz;
                 _count = count;
@@ -321,7 +288,7 @@ namespace OSI_Net.View_model
                 _isWork = isWork;
                 _b = b;
                 _stream = stream;
-
+                _my_file = my_file;
             }
         }
         #endregion Func
@@ -511,19 +478,19 @@ namespace OSI_Net.View_model
 
         #region List
 
-        ObservableCollection<Info_file> list_file = new ObservableCollection<Info_file>();
+        List<Info_file> list_file = new List<Info_file>();
         private string defaultFileName="Temp1";
 
         public ObservableCollection<Info_file> List_file
         {
             set
             {
-                list_file = value;
-                OnPropertyChanged(nameof(list_file));
+                list_file = value.ToList();
+                OnPropertyChanged(nameof(List_file));
             }
             get
             {
-                return list_file;
+                return new ObservableCollection<Info_file>(list_file);
             }
         }
         #endregion List

@@ -130,3 +130,5 @@ D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CopyComplete
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Migrations.InitialCreate.resources
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Migrations.AddCompanyMigration.resources

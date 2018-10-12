@@ -77,6 +77,15 @@
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\DelegateCommand.cs" />
     <Compile Include="Code\Status.cs" />
+    <Compile Include="Migrations\201810121058014_InitialCreate.cs" />
+    <Compile Include="Migrations\201810121058014_InitialCreate.Designer.cs">
+      <DependentUpon>201810121058014_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121219380_AddCompanyMigration.cs" />
+    <Compile Include="Migrations\201810121219380_AddCompanyMigration.Designer.cs">
+      <DependentUpon>201810121219380_AddCompanyMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Info_file.cs" />
     <Compile Include="Model\My_Files.cs" />
     <Compile Include="View_model\View_Model_Base.cs" />
@@ -109,6 +118,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201810121058014_InitialCreate.resx">
+      <DependentUpon>201810121058014_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121219380_AddCompanyMigration.resx">
+      <DependentUpon>201810121219380_AddCompanyMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
