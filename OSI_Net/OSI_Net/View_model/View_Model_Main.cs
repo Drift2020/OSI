@@ -158,6 +158,9 @@ namespace OSI_Net.View_model
                     // URI (англ. Uniform Resource Identifier) — единообразный идентификатор ресурса
                     string h = path_in_internet;
                     string fileName = Path.GetFileName(path_in_internet);
+                   
+                    fileName = fileName.Split(new char[] {'?'})[0];
+                   
 
                     HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);
                     
@@ -166,40 +169,92 @@ namespace OSI_Net.View_model
                     // Возвращаем поток данных из полученного интернет-ресурса.
                     using (Stream stream = response.GetResponseStream())
                     {
-                        byte[] b = new byte[response.ContentLength];
-                        int c = 0;
-                        int i = 0;
+                        long full_size = response.ContentLength;
+                        byte[] b = new byte[0];// = new byte[full_size];
+                        int i;
+
+                        //int c = 0;
+                        //int i = 0;
+
+
 
                         //    while ((c = stream.ReadByte()) != -1)                    
                         // {
                         //      b[i++] = (byte)c;
                         // }
+                        //создание баз для потоков
+                        // Counter[] my_count = new Counter[_numValue];
+                        Counter my_count = new Counter();
 
-                        Thread[] myThread = new Thread[_numValue];
-                        for (int it = 0; it < _numValue; it++)
-                        {
-                            myThread[i] = new Thread(new ParameterizedThreadStart(Count));
-                            myThread[i].Start(c);
-                        }
+                        int tmp_size = Convert.ToInt32( full_size / _numValue);
+                        long tmp_full_size = full_size;
+                        int poz = 0;
+
+                        //for (i = 0; i < my_count.Length - 1; i++)
+                        //{
+                        //my_count[i] = new Counter(i, tmp_size, poz, true, new byte[tmp_size], stream) ;
+                        //    poz += tmp_size;
+                        //    tmp_full_size -= tmp_size;
+                        //}
+
+                        my_count = new Counter(0, Convert.ToInt32(tmp_full_size), poz, true, new byte[tmp_full_size], stream);
 
 
+
+                        //
+
+                        //создание и запуск потоков
+                        Thread myThread = new Thread(new ParameterizedThreadStart(Count));
+                        myThread.Start(my_count);
+                        Info_file tmp = new Info_file();
+                        tmp.Date = DateTime.Now;
+                        tmp.Name = fileName;
+                        tmp.Path_Net = path_in_internet;
+                        tmp.Path_PC = path_for_file + fileName;
+                        tmp.Status=1;
+                        List_file.Add(tmp);
+                        OnPropertyChanged(nameof(List_file));
+                        my_db.Info_file.Add(tmp);
+                        my_db.SaveChanges();
+                      
+                      
+                        //Thread[] myThread = new Thread[_numValue];
+                        //for (int it = 0; it < _numValue; it++)
+                        //{
+                        //    myThread[it] = new Thread(new ParameterizedThreadStart(Count));
+                        //    myThread[it].Start(my_count[it]);
+                        //}
+                        //
+
+                        //проверка активности потоков
                         bool is_Next = false;
                         do {
                             is_Next = false;
-                            foreach (var tmp in myThread)
-                            {
-                                if (tmp.IsAlive)
+                          //foreach (var tmp in myThread)
+                          //  {
+                                if (myThread.IsAlive)
                                     is_Next = true;
-                            }
+                          //  }
 
                         } while (is_Next);
-
-                            //int count = Convert.ToInt32(response.ContentLength);
-
-                            //stream.BeginRead(b, 0, count, null, 1);
-                            //stream.ReadAsync(b, 0, count);
+                        //
 
 
+                        //запись в один байтовый масив
+
+                       // foreach(var elem in my_count)
+                       // {
+                        b = my_count._b.ToArray();
+                       // }
+
+                        //
+
+                         //int count = Convert.ToInt32(response.ContentLength);
+
+                         //stream.BeginRead(b, 0, count, null, 1);
+                         //stream.ReadAsync(b, 0, count);
+
+                        //преобразование в файл
                             FileStream st = new FileStream(path_for_file + fileName, FileMode.OpenOrCreate);
                         using (BinaryWriter writer = new BinaryWriter(st))
                         {
@@ -207,6 +262,17 @@ namespace OSI_Net.View_model
 
                             writer.Close();
                             System.Windows.MessageBox.Show("Файл успешно загружен с сервера: " + response.Server);
+
+                            List_file.Clear();
+                            foreach (var ip in my_db.Info_file)
+                            {
+                                List_file.Add(ip);
+                            }
+                        
+
+                            OnPropertyChanged(nameof(List_file));
+                           
+                       
                         }
                     }
                 }
@@ -222,17 +288,41 @@ namespace OSI_Net.View_model
         public static void Count(object x)
         {
             Counter n = x as Counter;
-             n.stream.ReadAsync(n.b, 0, n.count);
+            
+            for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++)
+            {
+                n._b[i] = (byte)c;
+            }
+                        //  n._stream.ReadAsync(n._b, n._poz, n._count);
         }
 
         public class Counter
         {
-            public int Number;
-            public bool isRedy;
-            public int count;
-            public int poz;
-            public byte[] b;
-            public Stream stream;
+            public int _number;
+            public bool _isWork;
+            public int _count;
+            public int _poz;
+            public byte[] _b;
+            public Stream _stream;
+
+           public  Counter()
+            {
+                _poz = _count = _number = 0;
+                _stream = null;
+                _isWork = true;
+
+
+            }
+            public Counter(int number, int count, int poz, bool isWork, byte[] b,Stream stream)
+            {
+                _poz = poz;
+                _count = count;
+                _number = number;
+                _isWork = isWork;
+                _b = b;
+                _stream = stream;
+
+            }
         }
         #endregion Func
 
