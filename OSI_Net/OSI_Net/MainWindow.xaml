@@ -36,6 +36,7 @@
                 <DataGrid.ContextMenu>
                 <ContextMenu>
                         <MenuItem Header="Pause" Command="{Binding Button_clik_pause}"></MenuItem>
+                        <MenuItem Header="Start" Command="{Binding Button_clik_start}"></MenuItem>
                         <MenuItem Header="Stop" Command="{Binding Button_clik_stop}"></MenuItem>
                         <Separator/>
                         <MenuItem Header="Delete" Command="{Binding Button_clik_delete}"></MenuItem>

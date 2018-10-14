@@ -246,7 +246,7 @@ namespace OSI_Net.View_model
                     tmp1.Status = 5;
                 }
 
-
+                tmp1.Status_Now = "";
             }
             OnPropertyChanged(nameof(List_file));
         }
@@ -261,6 +261,8 @@ namespace OSI_Net.View_model
                     list_file.Remove(tmp[0]);
                     my_db.Info_file.Remove(tmp[0]);
                     my_db.SaveChanges();
+                    File.Delete(tmp[0].Path_PC);
+
                     return 1;
                 }
                else
@@ -277,11 +279,15 @@ namespace OSI_Net.View_model
 
                 writer.Close();
 
-                var tmp1 = list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status = 4;
 
-                list_file.Where(x => x.Info_fileId == tmp.Info_fileId).ToList()[0].Status_Now = "100";
+                int tmp1;
+                
+                if(tmp.Status!=3)
+                tmp1= tmp.Status = 4;
+                
+                tmp.Status_Now = "100";
                 OnPropertyChanged(nameof(List_file));
-
+                my_db.SaveChanges();
 
             }
         }
@@ -292,8 +298,13 @@ namespace OSI_Net.View_model
             tmp.Date_start = DateTime.Now;
             tmp.Name = name;
             tmp.Path_Net = path_in_internet;
+
+          
+
+
             tmp.Path_PC = path_for_file + name;
             tmp.Status = 1;
+            tmp._ManualResetEvent = new ManualResetEvent(true);
             my_db.Info_file.Add(tmp);
             my_db.SaveChanges();
 
@@ -304,6 +315,7 @@ namespace OSI_Net.View_model
 
             my_count = new Counter(0, Convert.ToInt32(tmp_full_size), poz, true, new byte[tmp_full_size], stream, tmp);
             myThread = new Thread(new ParameterizedThreadStart(Count));
+            tmp.my_Thread = myThread;
             myThread.Start(my_count);
         }
         void Is_live_Thread(ref Thread myThread)
@@ -312,7 +324,7 @@ namespace OSI_Net.View_model
             do
             {
                 is_Next = false;
-
+                
                 if (myThread.IsAlive)
                     is_Next = true;
 
@@ -320,16 +332,16 @@ namespace OSI_Net.View_model
         }
         public static void Count(object x)
         {
-            Counter n = x as Counter;
-            
+            Counter n = x as Counter;           
             for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++)
             {
-                n._b[i] = (byte)c;
+                n._my_file._ManualResetEvent.WaitOne();
+                n._b[i] = (byte)c;         
                 n._my_file.Status_Now = (i!=0?(String.Format("{0:F2}", ((double)i / n._count*100))):"0");
-                my_this. OnPropertyChanged(nameof(List_file));
-              
+                my_this.OnPropertyChanged(nameof(List_file));
+               
+                
             }
-                      
         }
 
         public class Counter : View_Model_Base
@@ -341,7 +353,8 @@ namespace OSI_Net.View_model
             public byte[] _b;
             public Stream _stream;
             public Info_file _my_file;
-           public  Counter()
+         
+            public  Counter()
             {
                 _poz = _count = _number = 0;
                 _stream = null;
@@ -351,6 +364,7 @@ namespace OSI_Net.View_model
             }
             public Counter(int number, int count, int poz, bool isWork, byte[] b,Stream stream, Info_file my_file)
             {
+              
                 _poz = poz;
                 _count = count;
                 _number = number;
@@ -383,7 +397,10 @@ namespace OSI_Net.View_model
             using (FolderBrowserDialog tmp_view = new FolderBrowserDialog())
             {
                 tmp_view.ShowDialog();
+                if(tmp_view.SelectedPath[tmp_view.SelectedPath.Length-1]=='\\')
                 Path_for_file = tmp_view.SelectedPath;
+                else
+                    Path_for_file = tmp_view.SelectedPath+"\\";
             }
         }
         private bool CanExecute_open_for_file(object o)
@@ -483,6 +500,7 @@ namespace OSI_Net.View_model
         }
 
         #endregion Download
+
         #region Edit_path
 
         private DelegateCommand Command_Edit_path;
@@ -499,16 +517,36 @@ namespace OSI_Net.View_model
         }
         private void Execute_Edit_path(object o)
         {
-          
+            using (FolderBrowserDialog tmp_view = new FolderBrowserDialog())
+            {
+                tmp_view.ShowDialog();
+
+                string tmp;
+
+                if (tmp_view.SelectedPath[tmp_view.SelectedPath.Length - 1] == '\\')
+                    tmp = tmp_view.SelectedPath;
+                else
+                    tmp = tmp_view.SelectedPath + "\\";
+
+                int is_work = Is_copy(tmp + select_elem.Name);
+                if (is_work == 0 || is_work == 1)
+                {
+                    File.Move(select_elem.Path_PC, tmp + select_elem.Name);
+                    select_elem.Path_PC = tmp + select_elem.Name;
+                    OnPropertyChanged(nameof(List_file));
+                }
+            }
         }
         private bool CanExecute_Edit_path(object o)
         {
-          
+          if(select_elem!=null&&select_elem.Status==4)
                 return true;
+            return false;
           
         }
 
         #endregion Download
+
         #region Pause
 
         private DelegateCommand Command_pause;
@@ -525,14 +563,52 @@ namespace OSI_Net.View_model
         }
         private void Execute_pause(object o)
         {
-
+            select_elem.Status = 2;
+     
+            select_elem.Status_Now = "";
+            OnPropertyChanged(nameof(List_file));
+            select_elem._ManualResetEvent.Reset();
+           
+          
         }
         private bool CanExecute_pause(object o)
         {
+            if (select_elem != null&& select_elem.Status==1)
             return true;
+            return false;
         }
 
         #endregion Pause
+
+        #region Start
+
+        private DelegateCommand Command_start;
+        public ICommand Button_clik_start
+        {
+            get
+            {
+                if (Command_start == null)
+                {
+                    Command_start = new DelegateCommand(Execute_start, CanExecute_start);
+                }
+                return Command_start;
+            }
+        }
+        private void Execute_start(object o)
+        {
+            select_elem.Status = 1;
+            select_elem._ManualResetEvent.Set();
+            OnPropertyChanged(nameof(List_file));
+        }
+        private bool CanExecute_start(object o)
+        {
+            if (select_elem != null && select_elem.Status == 2)
+                return true;
+            return false;
+        }
+
+        #endregion Start
+
         #region Stop
 
         private DelegateCommand Command_stop;
@@ -549,14 +625,23 @@ namespace OSI_Net.View_model
         }
         private void Execute_stop(object o)
         {
-
+            select_elem._ManualResetEvent.Reset();
+            select_elem.my_Thread.Abort();
+            select_elem.my_Thread.Join();
+            select_elem.Status = 3;
+            select_elem.Status_Now = "";
+          
+            
         }
         private bool CanExecute_stop(object o)
         {
+            if(select_elem!=null&&select_elem.Status==1)
             return true;
+            return false;
         }
 
         #endregion Pause
+
         #region delete Download
 
         private DelegateCommand Command_delete_download;
@@ -581,6 +666,7 @@ namespace OSI_Net.View_model
         }
 
         #endregion delete Download
+
         #endregion Command
 
         #region List

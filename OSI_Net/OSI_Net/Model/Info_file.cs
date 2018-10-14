@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading;
 
 namespace OSI_Net.Model
 {
@@ -75,6 +76,20 @@ namespace OSI_Net.Model
                 }
 
             }
+        }
+        [NotMapped]
+        public ManualResetEvent _ManualResetEvent
+        {
+            get;
+            set;
+           
+        }
+        [NotMapped]
+        public Thread my_Thread
+        {
+            get;
+            set;
+
         }
 
     }
