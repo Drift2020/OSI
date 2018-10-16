@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:OSI_Net"
         mc:Ignorable="d"
-        Title="MainWindow" Height="437" Width="710">
+        Title="Fast Torrent" Height="437" Width="710">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -27,24 +27,20 @@
             <DataGrid  SelectionMode="Single" 
                       CanUserAddRows="False" 
                       ItemsSource="{Binding Path= List_file, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                  CellEditEnding="DataGrid_CellEditEnding"
+                 IsReadOnly="True"
                       AutoGenerateColumns="False"
                       SelectedValue="{Binding Select_elem, UpdateSourceTrigger=PropertyChanged}" >
                   <DataGrid.Columns>
                     <DataGridTextColumn  Header="Name"  Width="100" Binding="{Binding Name}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Status" Width="100" Binding="{Binding Status_Now}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Date start" Width="100" Binding="{Binding Date_start}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Date end" Width="100" Binding="{Binding Date_end}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Path for file"  Width="150" Binding="{Binding Path_PC}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Path in internet" Width="150" Binding="{Binding Path_Net}"/>
+                    <DataGridTextColumn  Header="Status" Width="100" Binding="{Binding Status_Now}"/>
+                    <DataGridTextColumn  Header="Date start" Width="100" Binding="{Binding Date_start}"/>
+                    <DataGridTextColumn  Header="Date end" Width="100" Binding="{Binding Date_end}"/>
+                    <DataGridTextColumn Header="Path for file"  Width="150" Binding="{Binding Path_PC_File}"/>
+                    <DataGridTextColumn  Header="Path in internet" Width="150" Binding="{Binding Path_Net}"/>
                   
                 </DataGrid.Columns>
 
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="CellEditEnding">
-                        <i:InvokeCommandAction Command="{Binding Button_clik_rename}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+            
 
                 <DataGrid.ContextMenu>
                 <ContextMenu>

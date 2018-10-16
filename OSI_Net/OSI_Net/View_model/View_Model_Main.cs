@@ -185,6 +185,11 @@ namespace OSI_Net.View_model
         private async void Download()
         {
             cts = new CancellationTokenSource();
+
+            if (path_for_file[path_for_file.Length - 1] != '\\')
+
+                path_for_file += "\\";
+
             var is_work= Is_copy(path_for_file + name);
             if(is_work==0|| is_work==1)
             await Task.Run(() => {
@@ -243,7 +248,7 @@ namespace OSI_Net.View_model
         {
             foreach(var tmp1 in list_file)
             {
-                if (!System.IO.File.Exists(tmp1.Path_PC))
+                if (!System.IO.File.Exists(tmp1.Path_PC_File))
                 {
                     tmp1.Status = 5;
                 }
@@ -254,7 +259,8 @@ namespace OSI_Net.View_model
         }
         int Is_copy(string path_for_file)
         {
-            var  tmp =  list_file.Where(x => x.Path_PC.ToLower() == path_for_file.ToLower()).ToList();
+
+            var  tmp =  list_file.Where(x => x.Path_PC_File.ToLower() == path_for_file.ToLower()).ToList();
             if(tmp.Count>0)
             {
                 var result = System.Windows.MessageBox.Show("Download already exists, want to replace it?", "Error",MessageBoxButton.OKCancel);
@@ -263,7 +269,7 @@ namespace OSI_Net.View_model
                     list_file.Remove(tmp[0]);
                     my_db.Info_file.Remove(tmp[0]);
                     my_db.SaveChanges();
-                    File.Delete(tmp[0].Path_PC);
+                    File.Delete(tmp[0].Path_PC_File);
 
                     return 1;
                 }
@@ -275,7 +281,7 @@ namespace OSI_Net.View_model
         #region
         void Add_file_on_device(byte[] b, Info_file tmp)
         {
-            FileStream st = new FileStream(tmp.Path_PC, FileMode.OpenOrCreate);
+            FileStream st = new FileStream(tmp.Path_PC_File, FileMode.OpenOrCreate);
             st.Seek(0, SeekOrigin.End);
             using (BinaryWriter writer = new BinaryWriter(st))
             {
@@ -286,7 +292,6 @@ namespace OSI_Net.View_model
             }
         }
         #endregion
-
         void End_file(Info_file tmp)
         {
             if (tmp.Status != 3)
@@ -295,7 +300,6 @@ namespace OSI_Net.View_model
             OnPropertyChanged(nameof(List_file));
             my_db.SaveChanges();
         }
-
         void New_Thread(Info_file tmp, out Counter my_count, long tmp_full_size,int poz, Stream stream, out Thread myThread)
         {
 
@@ -304,10 +308,12 @@ namespace OSI_Net.View_model
             tmp.Name = name;
             tmp.Path_Net = path_in_internet;
 
-          
 
+            if (path_for_file[path_for_file.Length - 1] != '\\')
 
-            tmp.Path_PC = path_for_file + name;
+                path_for_file += "\\";
+
+            tmp.Path_PC = path_for_file;
             tmp.Status = 1;
             tmp._ManualResetEvent = new ManualResetEvent(true);
             my_db.Info_file.Add(tmp);
@@ -456,8 +462,12 @@ namespace OSI_Net.View_model
                 list_file.Remove(select_elem);
                 var i =  my_db.Info_file.Remove(select_elem);
                 my_db.SaveChanges();
-                FileInfo tmp = new FileInfo(i.Path_PC);
-                if(tmp!=null)
+                FileInfo tmp = null ;
+             
+                tmp = new FileInfo(i.Path_PC_File);
+                
+
+                if (tmp!=null)
                 tmp.Delete();
 
                 OnPropertyChanged(nameof(List_file));
@@ -466,12 +476,13 @@ namespace OSI_Net.View_model
         }
         private bool CanExecute_delete(object o)
         {
-            if(select_elem!=null)
+            if(select_elem!=null&&select_elem.Status!=1&& select_elem.Status != 2)
             return true;
             return false;
         }
 
         #endregion delete
+
         #region Rename
 
         private DelegateCommand Command_rename;
@@ -488,12 +499,39 @@ namespace OSI_Net.View_model
         }
         private void Execute_rename(object o)
         {
-            System.Windows.MessageBox.Show("s", select_elem.Name);
+            Edit_name view = new Edit_name();
+            View_model_edit_name view_model = new View_model_edit_name(select_elem.Name);
+            view_model.Window_close = view.Close;
+            view.DataContext = view_model;
+
+            view.ShowDialog();
+            if(view_model.isOk)
+            {
+
+                try { 
+                File.Move(select_elem.Path_PC_File, Path.Combine(select_elem.Path_PC, view_model.Name));
+                }
+                catch {
+                    var result = System.Windows.MessageBox.Show( "This name already exists, want to replace the file?", "Error", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        File.Delete(Path.Combine(select_elem.Path_PC, view_model.Name));
+                        File.Move(select_elem.Path_PC_File, Path.Combine(select_elem.Path_PC, view_model.Name));
+                    }
+                    else
+                        return;
+                }
+                select_elem.Name = view_model.Name;
+               
+                my_db.SaveChanges();
+                OnPropertyChanged(nameof(List_file));
+            }
+
         }
         private bool CanExecute_rename(object o)
         {
-       //     if (select_elem != null )
-      //          return true;
+            if (select_elem != null && select_elem.Status==4)
+                return true;
             return false;
         }
 
@@ -560,9 +598,11 @@ namespace OSI_Net.View_model
                 int is_work = Is_copy(tmp + select_elem.Name);
                 if (is_work == 0 || is_work == 1)
                 {
-                    File.Move(select_elem.Path_PC, tmp + select_elem.Name);
-                    select_elem.Path_PC = tmp + select_elem.Name;
+                    File.Move(select_elem.Path_PC_File, tmp + select_elem.Name);
+
+                    select_elem.Path_PC = tmp;
                     OnPropertyChanged(nameof(List_file));
+                    my_db.SaveChanges();
                 }
             }
         }

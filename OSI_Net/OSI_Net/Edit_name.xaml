@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OSI_Net"
         mc:Ignorable="d"
-        Title="Edit_name" Height="162.406" Width="245.158">
+        WindowStyle="ToolWindow" 
+        ResizeMode="NoResize"
+        Title="Edit name" Height="162.406" Width="245.158">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="New name:"  Margin=" 5"/>
-            <TextBox MinWidth="200" Text="{Binding name}"  Margin=" 5"/>
-            <Button Content="OK" Margin=" 5"/>
+            <TextBox MinWidth="200" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin=" 5"/>
+            <Button Content="OK" Margin=" 5" Command="{Binding Button_clik_OK}"/>
         </StackPanel>
     </Grid>
 </Window>

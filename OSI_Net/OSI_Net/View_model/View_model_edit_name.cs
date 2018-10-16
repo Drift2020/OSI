@@ -10,6 +10,15 @@ namespace OSI_Net.View_model
 {
     class View_model_edit_name:View_Model_Base
     {
+       public Action Window_close;
+        public View_model_edit_name(string name)
+        {
+            old_name = name;
+        }
+        string old_name;
+
+        public bool isOk = false;
+
         string name;
         public string Name
         {
@@ -40,11 +49,12 @@ namespace OSI_Net.View_model
         }
         private void Execute_OK(object o)
         {
-           
+            isOk = true;
+            Window_close();
         }
         private bool CanExecute_OK(object o)
         {
-            if (name != null && name.Length > 0)
+            if (name != null && name.Length > 0 && old_name.ToLower()!= name.ToLower())
                 return true;
             return false;
         }

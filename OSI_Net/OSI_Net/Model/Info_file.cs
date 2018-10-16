@@ -91,6 +91,7 @@ namespace OSI_Net.Model
             set;
 
         }
-
+        [NotMapped]
+        public string Path_PC_File { get { return Path_PC + Name; } }
     }
 }
