@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace OSI_Net
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Edit_name.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class Edit_name : Window
     {
-        public MainWindow()
+        public Edit_name()
         {
             InitializeComponent();
         }
-
-    
     }
 }

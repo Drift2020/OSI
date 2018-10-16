@@ -222,8 +222,10 @@ namespace OSI_Net.View_model
 
 
                         #region преобразование в файл
-                        Add_file_on_device(b, tmp);
+                        //  Add_file_on_device(b, tmp);
+                        End_file(tmp);
                         #endregion
+
                     }
                     response.Dispose();
 
@@ -270,27 +272,30 @@ namespace OSI_Net.View_model
             }
             return 0;
         }
-        void Add_file_on_device(byte[] b,Info_file tmp)
+        #region
+        void Add_file_on_device(byte[] b, Info_file tmp)
         {
-            FileStream st = new FileStream(path_for_file + name, FileMode.OpenOrCreate);
+            FileStream st = new FileStream(tmp.Path_PC, FileMode.OpenOrCreate);
+            st.Seek(0, SeekOrigin.End);
             using (BinaryWriter writer = new BinaryWriter(st))
             {
                 writer.Write(b);
 
                 writer.Close();
 
-
-                int tmp1;
-                
-                if(tmp.Status!=3)
-                tmp1= tmp.Status = 4;
-                
-                tmp.Status_Now = "100";
-                OnPropertyChanged(nameof(List_file));
-                my_db.SaveChanges();
-
             }
         }
+        #endregion
+
+        void End_file(Info_file tmp)
+        {
+            if (tmp.Status != 3)
+                tmp.Status = 4;
+            tmp.Status_Now = "";
+            OnPropertyChanged(nameof(List_file));
+            my_db.SaveChanges();
+        }
+
         void New_Thread(Info_file tmp, out Counter my_count, long tmp_full_size,int poz, Stream stream, out Thread myThread)
         {
 
@@ -332,15 +337,35 @@ namespace OSI_Net.View_model
         }
         public static void Count(object x)
         {
-            Counter n = x as Counter;           
-            for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++)
+            byte[] b = new byte[1000];
+            Counter n = x as Counter;
+            int my_b = 0;
+            for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++, my_b++)
             {
+          
+
                 n._my_file._ManualResetEvent.WaitOne();
-                n._b[i] = (byte)c;         
+                // n._b[i] = (byte)c;      
+                
+                ///new logic
+                b[my_b] = (byte)c;
+                if ((i+1)%1000==0)
+                {
+                    my_this.Add_file_on_device(b, n._my_file);
+                    my_b = -1;
+                    b = new byte[1000]; 
+                }
+                ///
+
                 n._my_file.Status_Now = (i!=0?(String.Format("{0:F2}", ((double)i / n._count*100))):"0");
                 my_this.OnPropertyChanged(nameof(List_file));
                
                 
+            }
+            if(my_b!=0)
+            {
+                my_this.Add_file_on_device(b, n._my_file);
+               
             }
         }
 
@@ -463,12 +488,16 @@ namespace OSI_Net.View_model
         }
         private void Execute_rename(object o)
         {
-
+            System.Windows.MessageBox.Show("s", select_elem.Name);
         }
         private bool CanExecute_rename(object o)
         {
-            return true;
+       //     if (select_elem != null )
+      //          return true;
+            return false;
         }
+
+      
 
         #endregion Rename
 
@@ -640,7 +669,7 @@ namespace OSI_Net.View_model
             return false;
         }
 
-        #endregion Pause
+        #endregion Stop
 
         #region delete Download
 
@@ -667,6 +696,56 @@ namespace OSI_Net.View_model
 
         #endregion delete Download
 
+
+        #region Window_close
+
+        private DelegateCommand Command_Window_close;
+        public ICommand Button_clik_Window_close
+        {
+            get
+            {
+                if (Command_Window_close == null)
+                {
+                    Command_Window_close = new DelegateCommand(Execute_Window_close, CanExecute_Window_close);
+                }
+                return Command_Window_close;
+            }
+        }
+        private void Execute_Window_close(object o)
+        {
+          
+            foreach(var i in list_file)
+            {
+                if (i.my_Thread != null && i.my_Thread.IsAlive)
+                {
+
+                    i._ManualResetEvent.Reset();
+                    i.my_Thread.Abort();
+                    i.my_Thread.Join();
+                    i.Status = 3;
+                    i.Status_Now = "";
+
+                    foreach(var y in my_db.Info_file)
+                    {
+                        if (list_file.Where(x => x.Info_fileId == i.Info_fileId).Last() != null)
+                            y.Status = 3;
+
+                    }
+
+                    my_db.SaveChanges();
+                }
+            }
+
+        }
+        private bool CanExecute_Window_close(object o)
+        {
+            
+                return true;
+           
+        }
+
+        #endregion Window_close
+
         #endregion Command
 
         #region List
@@ -686,20 +765,22 @@ namespace OSI_Net.View_model
                 return new ObservableCollection<Info_file>(list_file);
             }
         }
-
+     
         Info_file select_elem = null;
         public Info_file Select_elem
         {
             set
             {
+             
                 select_elem = value;
                 OnPropertyChanged(nameof(Select_elem));
             }
             get
             {
-                if(select_elem!=null)
-                return select_elem;
-                return new Info_file();
+              //  if(select_elem!=null)
+
+                    return select_elem;
+               // return new Info_file();
             }
         }
 
