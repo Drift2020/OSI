@@ -117,11 +117,13 @@ D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.xml
 D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
 D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojAssemblyReference.cache
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.g.cs
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.baml
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
@@ -130,5 +132,3 @@ D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CopyComplete
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
 D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
-D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.g.cs
-D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.baml

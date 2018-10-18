@@ -49,8 +49,24 @@ namespace OSI_Net.View_model
 
                         }
                     }
-               
 
+                    try { 
+                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(path_in_internet /* URI, определяющий интернет-ресурс */);
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    string[] words = response.ContentType.Split(new char[] { '/' });
+                    if (name.IndexOf('.') == -1)
+                    {
+                        Name = name + '.' + words[words.Length - 1];
+                    }
+                      
+                        response.Close();
+                        response.Dispose();
+                    }
+                    catch(Exception e)
+                    {
+                        System.Windows.MessageBox.Show(e.Message,"Error");
+                    }
                 }
                 catch
                 {
@@ -181,7 +197,6 @@ namespace OSI_Net.View_model
             Found_file();
             OnPropertyChanged(nameof(List_file));
         }
-
         private async void Download()
         {
             cts = new CancellationTokenSource();
@@ -200,11 +215,18 @@ namespace OSI_Net.View_model
 
                     HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(h /* URI, определяющий интернет-ресурс */);            
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                  
+         
+
+
                     using (Stream stream = response.GetResponseStream())
                     {
                       
                         long full_size = response.ContentLength;
+                        if(full_size==-1)
+                        {
+                            System.Windows.MessageBox.Show("File not available for download.");
+                            return;
+                        }
                         byte[] b = new byte[0];// = new byte[full_size];
                         int i;
 
@@ -310,7 +332,6 @@ namespace OSI_Net.View_model
 
 
             if (path_for_file[path_for_file.Length - 1] != '\\')
-
                 path_for_file += "\\";
 
             tmp.Path_PC = path_for_file;
@@ -346,7 +367,7 @@ namespace OSI_Net.View_model
             byte[] b = new byte[1000];
             Counter n = x as Counter;
             int my_b = 0;
-            for (int i=0,c=0; (c = n._stream.ReadByte()) != -1;i++, my_b++)
+            for (long i=0,c=0; (c = n._stream.ReadByte()) != -1;i++, my_b++)
             {
           
 
@@ -374,7 +395,6 @@ namespace OSI_Net.View_model
                
             }
         }
-
         public class Counter : View_Model_Base
         {
             public int _number;
@@ -427,11 +447,16 @@ namespace OSI_Net.View_model
         {
             using (FolderBrowserDialog tmp_view = new FolderBrowserDialog())
             {
-                tmp_view.ShowDialog();
-                if(tmp_view.SelectedPath[tmp_view.SelectedPath.Length-1]=='\\')
-                Path_for_file = tmp_view.SelectedPath;
-                else
-                    Path_for_file = tmp_view.SelectedPath+"\\";
+                var result = tmp_view.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+
+                    if (tmp_view.SelectedPath[tmp_view.SelectedPath.Length - 1] == '\\')
+                        Path_for_file = tmp_view.SelectedPath;
+                    else
+                        Path_for_file = tmp_view.SelectedPath + "\\";
+                }
             }
         }
         private bool CanExecute_open_for_file(object o)
@@ -440,6 +465,7 @@ namespace OSI_Net.View_model
         }
 
         #endregion Open for file
+
         #region delete
 
         private DelegateCommand Command_delete;
@@ -539,7 +565,6 @@ namespace OSI_Net.View_model
 
         #endregion Rename
 
-
         #region Download
 
         private DelegateCommand Command_download;
@@ -586,23 +611,25 @@ namespace OSI_Net.View_model
         {
             using (FolderBrowserDialog tmp_view = new FolderBrowserDialog())
             {
-                tmp_view.ShowDialog();
-
-                string tmp;
-
-                if (tmp_view.SelectedPath[tmp_view.SelectedPath.Length - 1] == '\\')
-                    tmp = tmp_view.SelectedPath;
-                else
-                    tmp = tmp_view.SelectedPath + "\\";
-
-                int is_work = Is_copy(tmp + select_elem.Name);
-                if (is_work == 0 || is_work == 1)
+               var result =  tmp_view.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    File.Move(select_elem.Path_PC_File, tmp + select_elem.Name);
+                    string tmp;
 
-                    select_elem.Path_PC = tmp;
-                    OnPropertyChanged(nameof(List_file));
-                    my_db.SaveChanges();
+                    if (tmp_view.SelectedPath[tmp_view.SelectedPath.Length - 1] == '\\')
+                        tmp = tmp_view.SelectedPath;
+                    else
+                        tmp = tmp_view.SelectedPath + "\\";
+
+                    int is_work = Is_copy(tmp + select_elem.Name);
+                    if (is_work == 0 || is_work == 1)
+                    {
+                        File.Move(select_elem.Path_PC_File, tmp + select_elem.Name);
+
+                        select_elem.Path_PC = tmp;
+                        OnPropertyChanged(nameof(List_file));
+                        my_db.SaveChanges();
+                    }
                 }
             }
         }
@@ -735,7 +762,6 @@ namespace OSI_Net.View_model
         }
 
         #endregion delete Download
-
 
         #region Window_close
 

@@ -63,7 +63,7 @@
 
                     <WrapPanel HorizontalAlignment="Center">
                         <StackPanel  Orientation="Horizontal" >
-                            <TextBlock VerticalAlignment="Center" Width="auto" Text="Path for file:" DockPanel.Dock="Left" />
+                            <TextBlock VerticalAlignment="Center" Width="auto" Text="Path to save:" DockPanel.Dock="Left" />
                             <TextBox Text="{Binding Path_for_file,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="150"/>
                             <Button Command="{Binding Button_clik_open_for_file}" Content="Open..." Margin="0,5,5,5"/>
                         </StackPanel>
