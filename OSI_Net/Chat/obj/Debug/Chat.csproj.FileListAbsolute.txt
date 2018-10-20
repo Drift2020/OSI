@@ -1,9 +1,7 @@
-D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csprojAssemblyReference.cache
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Resources\Icons.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Resources\IconsNonShared.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Login.g.cs
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Messege.g.cs
-D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Window1.g.cs
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\App.g.cs
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat_Content.g.cs
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat_MarkupCompile.cache
@@ -37,7 +35,6 @@ D:\Projects\OSI\OSI_Net\Chat\obj\Debug\App.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\MainWindow.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Login.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Messege.baml
-D:\Projects\OSI\OSI_Net\Chat\obj\Debug\View\Window1.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.g.resources
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.Properties.Resources.resources
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csproj.GenerateResource.cache
@@ -45,3 +42,7 @@ D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csproj.CoreCompileInputs.cache
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csproj.CopyComplete
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.exe
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.pdb
+D:\Projects\OSI\OSI_Net\Chat\obj\Debug\MyControls\ImageButtonUC.baml
+D:\Projects\OSI\OSI_Net\Chat\obj\Debug\MyControls\ImageButtonUC.g.cs
+D:\Projects\OSI\OSI_Net\Chat\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csprojAssemblyReference.cache

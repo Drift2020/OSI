@@ -22,10 +22,7 @@ namespace Chat
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public WindowCommandsOverlayBehavior LeftWindowCommandsOverlayBehavior;
-        public WindowCommandsOverlayBehavior RightWindowCommandsOverlayBehavior;
-        public WindowCommandsOverlayBehavior WindowButtonCommandsOverlayBehavior;
-        public WindowCommandsOverlayBehavior IconOverlayBehavior;
+      
 
 
         public MainWindow()

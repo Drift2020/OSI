@@ -5,21 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                       xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:local="clr-namespace:Chat"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:l="clr-namespace:WpfApp"
+        xmlns:Local="clr-namespace:Chat"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
 
 
-    <Controls:MetroWindow.Flyouts>
+    <!--<Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="fd" Position="Right" Header="Flyout" Visibility="Visible" Width="200"
                             >
                 <TextBlock Text="232"/>
-                <!-- Your custom content here -->
+                --><!-- Your custom content here --><!--
             </Controls:Flyout>
         </Controls:FlyoutsControl>
-    </Controls:MetroWindow.Flyouts>
+    </Controls:MetroWindow.Flyouts>-->
 
 
 
@@ -76,18 +78,21 @@
             </Grid>
            
             <!--вторая панель меню-->
-            <Grid Grid.Row="1"  x:Name="DropMenu">
+            <Grid Grid.Row="1" Visibility="Collapsed" x:Name="DropMenu">
                 <StackPanel>
-                    <Button  x:Name="New_group"  >
-                        <iconPacks:PackIconFontAwesome Kind="AlignJustifySolid" />
-                    </Button>
-                    <Button  x:Name="Contacts"  >
-                        <iconPacks:PackIconFontAwesome Kind="AlignJustifySolid" />
-                    </Button>
-                    <Button  Style="{StaticResource ImageButton}"   x:Name="Settings" >
 
-                        
-                    </Button>
+                    <!--<Button  Style="{StaticResource ImageButton}"  Command="{Binding Button_clik_download}"   x:Name="Settings" >
+                      
+                        Settings
+                    </Button>-->
+
+                    <l:ImageButtonUC x:Name="Setting" Text="Settings" Image="AlignJustifySolid" Command="{Binding Button_clik_download}"/>
+                    <l:ImageButtonUC x:Name="New_Group" Text="New Group" Image="AlignJustifySolid" Command="{Binding Button_clik_download}"/>
+                    <l:ImageButtonUC x:Name="Profile" Text="Profile" Image="AlignJustifySolid" Command="{Binding Button_clik_download}"/>
+
+
+
+
                 </StackPanel>
                 
             </Grid>

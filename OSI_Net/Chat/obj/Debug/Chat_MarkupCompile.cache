@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\OSI\OSI_Net\Chat\App.xaml
-6-232964273
+61585957645
 8-316583041
-151731774628
+16-112867359
 242005708292
-MainWindow.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;View\Login.xaml;View\Messege.xaml;View\Window1.xaml;
+MainWindow.xaml;MyControls\ImageButtonUC.xaml;Resources\Icons.xaml;Resources\IconsNonShared.xaml;View\Login.xaml;View\Messege.xaml;
 
 False
 
