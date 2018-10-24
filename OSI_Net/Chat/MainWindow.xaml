@@ -9,6 +9,8 @@
         xmlns:l="clr-namespace:WpfApp"
         xmlns:Local="clr-namespace:Chat"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+     
+        xmlns:r="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
 
@@ -116,20 +118,33 @@
                 <Grid DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="15"/>
                     </Grid.ColumnDefinitions>
 
                 
                     <TextBlock Margin="5,0,0,0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="35" Text="User"/>
-                    
-                            <Menu Grid.Column="1">
-                        <MenuItem Header=":">
-                        
-                         
 
-                        </MenuItem>
-                    </Menu>
-                       
+                    <ToolBar  Grid.Column="1" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" >
+                        <!--тут нужны тригеры-->
+                        <l:ImageButtonUC x:Name="All_file" 
+                                         Text="All file" 
+                                         Image="AlignJustifySolid" 
+                                         Command="{Binding Button_clik_All_file}"/>
+                        <l:ImageButtonUC x:Name="All_media" 
+                                         Text="All media" 
+                                         Image="AlignJustifySolid" 
+                                         Command="{Binding Button_clik_All_media}"/>
+                        <l:ImageButtonUC x:Name="All_photo" 
+                                         Text="All photo" 
+                                         Image="AlignJustifySolid" 
+                                         Command="{Binding Button_clik_All_photo}"/>
+                        <l:ImageButtonUC x:Name="Serche" 
+                                         Text="Serche" 
+                                         Image="AlignJustifySolid" 
+                                         Command="{Binding Button_clik_Serche}"/>
+                    </ToolBar>
+                   
+                    
                 </Grid>
                 <Grid DockPanel.Dock="Top" >
 
@@ -167,9 +182,15 @@
                         <ColumnDefinition  Width="50"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"/>
+                    <Button Grid.Column="0" BorderThickness="0"
+                            Style="{DynamicResource AccentedSquareButtonStyle}">
+                        <iconPacks:PackIconMaterial Kind="Paperclip" />
+                    </Button>
                     <TextBox FontSize="15"  Grid.Column="1"/>
-                    <Button Grid.Column="2"/>
+                    <Button Grid.Column="2"  BorderThickness="0"
+                            Style="{DynamicResource AccentedSquareButtonStyle}">
+                        <iconPacks:PackIconMaterial Kind="Send" />
+                    </Button>
 
                 </Grid>
                 

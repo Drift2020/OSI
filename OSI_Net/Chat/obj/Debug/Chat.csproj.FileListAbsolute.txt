@@ -45,4 +45,3 @@ D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.pdb
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\MyControls\ImageButtonUC.baml
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\MyControls\ImageButtonUC.g.cs
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csprojAssemblyReference.cache
