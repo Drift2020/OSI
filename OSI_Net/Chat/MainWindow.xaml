@@ -10,7 +10,7 @@
         xmlns:Local="clr-namespace:Chat"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
      
-        xmlns:r="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+      
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
 

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.IconPacks;
 using MahApps.Metro.Controls;
+using System.Data.SQLite;
 namespace Chat
 {
 
