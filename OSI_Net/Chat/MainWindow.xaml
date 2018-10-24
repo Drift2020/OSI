@@ -51,7 +51,7 @@
                 <Button Click="Menu_Click" x:Name="Menu" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="0" Width="35" Height="35">
                     <iconPacks:PackIconFontAwesome Kind="AlignJustifySolid" />
                 </Button>
-                <TextBox x:Name="Search_list" Grid.Column="1"></TextBox>
+                <TextBox FontSize="20" x:Name="Search_list" Grid.Column="1">Serche</TextBox>
 
 
 
@@ -76,7 +76,6 @@
 
                 </ListView>
             </Grid>
-           
             <!--вторая панель меню-->
             <Grid Grid.Row="1" Visibility="Collapsed" x:Name="DropMenu">
                 <StackPanel>
@@ -107,20 +106,75 @@
         <!--вторая панель-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition  Height="auto" />
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             
-            <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+            <DockPanel Grid.Row="0" >
+                
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
 
+                
+                    <TextBlock Margin="5,0,0,0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="35" Text="User"/>
+                    
+                            <Menu Grid.Column="1">
+                        <MenuItem Header=":">
+                        
+                         
 
+                        </MenuItem>
+                    </Menu>
+                       
+                </Grid>
+                <Grid DockPanel.Dock="Top" >
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="100"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition  Width="150"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock  Grid.Column="0" Margin="5,5,0,5" FontSize="20" VerticalAlignment="Center" Text="Serche"/>
+                    <TextBox Grid.Column="1" MinWidth="100" VerticalAlignment="Center" Margin="5" FontSize="20"/>
+                    <StackPanel HorizontalAlignment="Right" Grid.Column="2" Orientation="Horizontal"  >
+                        <TextBox x:Name="txtNum" Margin="5,5,0,5" FontSize="20" MinWidth="50" MaxWidth="100" Text="{Binding NumValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Command="{Binding Button_up_product}"  Margin="5,5,0,5" Content="˄" Width="40"  />
+                        <Button Command="{Binding Button_down_product}"  Margin="0,5,0,5"  Content="˅" Width="40"  />
+                    </StackPanel>
+                    
+                </Grid>
+                <Grid  DockPanel.Dock="Bottom">
+                    <ListView Grid.Row="1" >
 
+                    </ListView>
+                </Grid>
+            </DockPanel>
 
-            </WrapPanel>
+            <StackPanel Grid.Row="1">
+                <ListView x:Name="Message_file">
 
+                </ListView>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="50"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition  Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"/>
+                    <TextBox FontSize="15"  Grid.Column="1"/>
+                    <Button Grid.Column="2"/>
+
+                </Grid>
+                
+                
+            </StackPanel>
         </Grid>
     </Grid>
 </Controls:MetroWindow>
