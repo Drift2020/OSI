@@ -25,16 +25,16 @@ namespace Chat
         }
         private void OnStartup(object sender, StartupEventArgs e)
         {
-            
-            
+
+            Chat_dbDataSet my_db = new Chat_dbDataSet(); 
             
                 bool work = true;
 
-                MainWindow view = new MainWindow();
+                Login view = new Login();
 
 
 
-                View_model_main viewModel = new View_model_main();
+            Viwe_Model_Login viewModel = new Viwe_Model_Login(my_db);
                 view.DataContext = viewModel;
 
                 //if (viewModel._Visibility_off == null)

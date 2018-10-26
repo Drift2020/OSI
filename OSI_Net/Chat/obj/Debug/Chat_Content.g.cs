@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chat_db.mdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chat_db_log.ldf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/mdl-v1.1.2/material.css")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/mdl-v1.1.2/material.js")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/mdl-v1.1.2/material.min.css")]

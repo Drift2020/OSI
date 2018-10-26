@@ -54,3 +54,6 @@ D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csproj.CoreCompileInputs.cache
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csproj.CopyComplete
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.exe
 D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.pdb
+D:\Projects\OSI\OSI_Net\Chat\bin\Debug\Chat_db.mdf
+D:\Projects\OSI\OSI_Net\Chat\bin\Debug\Chat_db_log.ldf
+D:\Projects\OSI\OSI_Net\Chat\obj\Debug\Chat.csprojAssemblyReference.cache

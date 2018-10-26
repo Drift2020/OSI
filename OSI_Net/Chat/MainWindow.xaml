@@ -141,12 +141,12 @@
                         <l:ImageButtonUC x:Name="Serche" 
                                          Text="Serche" 
                                          Image="AlignJustifySolid" 
-                                         Command="{Binding Button_clik_Serche}"/>
+                                         Command="{Binding Button_clik_Serche}" Click="Serche_Click"/>
                     </ToolBar>
                    
                     
                 </Grid>
-                <Grid DockPanel.Dock="Top" >
+                <Grid DockPanel.Dock="Top" x:Name="Serche_chat" Visibility="Collapsed" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  Width="100"/>

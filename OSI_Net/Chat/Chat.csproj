@@ -119,6 +119,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Chat_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\ButtonProperties.cs" />
     <Compile Include="Code\DelegateCommand.cs" />
@@ -187,6 +192,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Chat_dbDataSet.xsc">
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Chat_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Chat_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Chat_dbDataSet.xss">
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Content\mdl-v1.1.2\bower.json" />
     <None Include="Content\mdl-v1.1.2\LICENSE" />
     <None Include="Content\mdl-v1.1.2\material.min.css.map" />

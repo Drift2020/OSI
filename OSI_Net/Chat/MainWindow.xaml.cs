@@ -48,8 +48,12 @@ namespace Chat
             Search_list.Visibility = Visibility.Visible;
         }
 
-
-
-      
-}
+        private void Serche_Click(object sender, RoutedEventArgs e)
+        {
+            if (Serche_chat.Visibility == Visibility.Collapsed)
+                Serche_chat.Visibility = Visibility.Visible;
+            else
+                Serche_chat.Visibility = Visibility.Collapsed;
+        }
+    }
 }

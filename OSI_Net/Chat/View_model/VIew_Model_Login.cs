@@ -20,14 +20,14 @@ namespace Chat.View_model
         //Family Family;
 
 
-        public Viwe_Model_Login()
+        public Viwe_Model_Login(Chat_dbDataSet db)
         {
            // myDB = new CashDB();
            //my_users = new Person();
         
         }
 
-        public Viwe_Model_Login(Visibility Visibility_reg, int level/*,Family family*/)
+        public Viwe_Model_Login(Visibility Visibility_reg, int level,Chat_dbDataSet db)
         {
             visibility_reg = Visibility_reg;
             //myDB = new CashDB();
