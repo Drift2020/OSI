@@ -10,10 +10,10 @@ namespace Chat.View_model
 {
     class View_model_main:View_Model_Base
     {
-        Chat_dbDataSet my_db;
-        public View_model_main(Chat_dbDataSet elem)
+       
+        public View_model_main()
         {
-            my_db = elem;
+          
         }
 
         private DelegateCommand Command_download;

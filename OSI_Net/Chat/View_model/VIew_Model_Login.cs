@@ -9,29 +9,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-
+using System.Data.SQLite;
+using Chat;
+using SQLite;
+using Chat.Model;
+using System.Linq;
 namespace Chat.View_model
 {
     class Viwe_Model_Login : View_Model_Base
     {
         #region Pole
-        
-
-
-        public Viwe_Model_Login(Chat_dbDataSet db)
+        Model1 my_db;
+        Users Profile;
+        public Viwe_Model_Login(Model1 my_db)
         {
-            // myDB = new CashDB();
-            //my_users = new Person();
+            this.my_db =  my_db;
+           
+
           
+           
+            // do your work here
+            
         }
 
-        public Viwe_Model_Login(Visibility Visibility_reg, int level,Chat_dbDataSet db)
+        public Viwe_Model_Login(Visibility Visibility_reg, int level, Model1 my_db)
         {
             visibility_reg = Visibility_reg;
-            //myDB = new CashDB();
-            //my_users = new Person();
-            //LEVEL = level;
-            //Family = family;
+            
+           
+          
             is_ok = false;
         }
 
@@ -190,38 +196,40 @@ namespace Chat.View_model
         {
             try
             {
-               // myDB = new CashDB();
-                //if (visibility_reg == Visibility.Visible)
-                //    foreach (var i in myDB.People)
-                //    {
-                //        if (i.Login == login && i.Password == password)
-                //        {
-                //            is_ok = true;
-                //            _OK();
-                //            Now_Registr(i);
-                //            return;
+                my_db = new Model1();
+                if (visibility_reg == Visibility.Visible)
+                    {
+                    //foreach (var i in myDB.People)
+                    //{
+                    //    if (i.Login == login && i.Password == password)
+                    //    {
+                    //        is_ok = true;
+                    //        _OK();
+                    //        Now_Registr(i);
+                    //        return;
 
-                //        }
+                    //    }
 
-                //    }
-                //else
-                //{
-                //    foreach (var i in myDB.People)
-                //    {
-                //        if (Family.ID == i.Family.ID &&
-                //            i.Login == login &&
-                //            i.Password == password &&
-                //            LEVEL >= i.Right.Level)
-                //        {
-                //            is_ok = true;
-                //            _OK();
-                //            _Close();
-                //            return;
+                    //}
+                }
+                else
+                {
+                   // foreach (var i in myDB.People)
+                  //  {
+                        //if (Family.ID == i.Family.ID &&
+                        //    i.Login == login &&
+                        //    i.Password == password &&
+                        //    LEVEL >= i.Right.Level)
+                        //{
+                        //    is_ok = true;
+                        //    _OK();
+                        //    _Close();
+                        //    return;
 
-                //        }
-                //    }
+                        //}
+                   // }
 
-                //}
+                }
                 OpenMessege("Password or login is not correct.", "Error");
                 return;
 

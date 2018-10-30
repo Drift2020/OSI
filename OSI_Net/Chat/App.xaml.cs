@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Chat.Model;
 using System.Data.SQLite;
 namespace Chat
 {
@@ -26,15 +26,15 @@ namespace Chat
         private void OnStartup(object sender, StartupEventArgs e)
         {
 
-            Chat_dbDataSet my_db = new Chat_dbDataSet(); 
-            
+
+            Model1 db=new Model1();
                 bool work = true;
 
                 Login view = new Login();
 
 
 
-            Viwe_Model_Login viewModel = new Viwe_Model_Login(my_db);
+            Viwe_Model_Login viewModel = new Viwe_Model_Login(db);
                 view.DataContext = viewModel;
 
                 //if (viewModel._Visibility_off == null)
