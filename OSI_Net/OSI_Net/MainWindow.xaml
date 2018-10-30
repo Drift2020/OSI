@@ -1,0 +1,97 @@
+﻿<Controls:MetroWindow x:Class="OSI_Net.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:OSI_Net"
+        mc:Ignorable="d"
+        Title="Fast Torrent" Height="437" Width="710">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding Button_clik_Window_close}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+           
+            <Grid >
+
+
+            <DataGrid  SelectionMode="Single" 
+                      CanUserAddRows="False" 
+                      ItemsSource="{Binding Path= List_file, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                 IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      SelectedValue="{Binding Select_elem, UpdateSourceTrigger=PropertyChanged}" >
+                  <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Name"  Width="100" Binding="{Binding Name}"/>
+                    <DataGridTextColumn  Header="Status" Width="100" Binding="{Binding Status_Now}"/>
+                    <DataGridTextColumn  Header="Date start" Width="100" Binding="{Binding Date_start}"/>
+                    <DataGridTextColumn  Header="Date end" Width="100" Binding="{Binding Date_end}"/>
+                    <DataGridTextColumn Header="Path for file"  Width="150" Binding="{Binding Path_PC_File}"/>
+                    <DataGridTextColumn  Header="Path in internet" Width="150" Binding="{Binding Path_Net}"/>
+                  
+                </DataGrid.Columns>
+
+            
+
+                <DataGrid.ContextMenu>
+                <ContextMenu>
+                        <MenuItem Header="Pause" Command="{Binding Button_clik_pause}"></MenuItem>
+                        <MenuItem Header="Start" Command="{Binding Button_clik_start}"></MenuItem>
+                        <MenuItem Header="Stop" Command="{Binding Button_clik_stop}"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Delete" Command="{Binding Button_clik_delete}"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Rename" Command="{Binding Button_clik_rename}"></MenuItem>
+                        <MenuItem Header="Edit path" Command="{Binding Button_clik_Edit_path}"></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+            </Grid>
+       
+            <Grid  Grid.Row="1">
+            <ScrollViewer>
+            <StackPanel  >
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <StackPanel  Orientation="Horizontal" >
+                            <TextBlock VerticalAlignment="Center" Width="auto" Text="Path to save:" DockPanel.Dock="Left" />
+                            <TextBox Text="{Binding Path_for_file,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="150"/>
+                            <Button Command="{Binding Button_clik_open_for_file}" Content="Open..." Margin="0,5,5,5"/>
+                        </StackPanel>
+                        <StackPanel  Orientation="Horizontal" >
+                            <TextBlock VerticalAlignment="Center" Width="auto" Text="Path in internet:" DockPanel.Dock="Left" />
+                            <TextBox Text="{Binding Path_in_internet, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5" Width="150"/>
+
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel  HorizontalAlignment="Center">
+                        <TextBlock Text="Name file:" VerticalAlignment="Center"/>
+                        <TextBox  Margin="5" MinWidth="150" Width="auto" 
+                                  Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Command="{Binding Button_clik_download}" Content="Download" Margin="5"/>
+                    </WrapPanel>
+                    <!--<WrapPanel HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <TextBlock Text="Flows: " VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtNum" Margin="5,5,0,5" Width="50" Text="{Binding NumValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Command="{Binding Button_up_product}"  Margin="5,5,0,5" Content="˄" Width="20"  />
+                        <Button Command="{Binding Button_down_product}"  Margin="0,5,0,5"  Content="˅" Width="20"  />
+                    </StackPanel>
+                     
+                </WrapPanel>-->
+                  
+            </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+    </Grid>
+</Controls:MetroWindow>

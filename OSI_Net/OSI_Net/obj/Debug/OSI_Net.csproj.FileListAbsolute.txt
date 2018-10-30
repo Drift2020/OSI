@@ -1,0 +1,134 @@
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe.config
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.pdb
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.dll
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.dll
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.pdb
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojResolveAssemblyReference.cache
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.GenerateResource.Cache
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.xml
+C:\Users\Buje_jy89\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe.config
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.pdb
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.dll
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.dll
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.dll
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.pdb
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.xml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.xml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojResolveAssemblyReference.cache
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.GenerateResource.Cache
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
+C:\Users\Mamory\Documents\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe.config
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.pdb
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.dll
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.dll
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.dll
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.pdb
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.xml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.xml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojResolveAssemblyReference.cache
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.GenerateResource.Cache
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
+C:\Users\Buje_jy89\Documents\Visual Studio 2017\Projects\wpf\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe.config
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.pdb
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.dll
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.dll
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.dll
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.dll
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\System.Windows.Interactivity.dll
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.pdb
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.xml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.xml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.xml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojResolveAssemblyReference.cache
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.GenerateResource.Cache
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
+E:\Program\GitHub\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe.config
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.exe
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\OSI_Net.pdb
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.dll
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.dll
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.dll
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\System.Windows.Interactivity.dll
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.pdb
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\ControlzEx.xml
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.xml
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.pdb
+D:\Projects\OSI\OSI_Net\OSI_Net\bin\Debug\MahApps.Metro.xml
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csprojAssemblyReference.cache
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.g.cs
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.g.cs
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\App.g.cs
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.cache
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net_MarkupCompile.lref
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\App.baml
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\Edit_name.baml
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\MainWindow.baml
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.g.resources
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.Properties.Resources.resources
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.GenerateResource.cache
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CoreCompileInputs.cache
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.csproj.CopyComplete
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.exe
+D:\Projects\OSI\OSI_Net\OSI_Net\obj\Debug\OSI_Net.pdb

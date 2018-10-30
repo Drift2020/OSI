@@ -10,7 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-using System.Data.SQLite;
+
+using System.Data.Entity;
 namespace Chat
 {
     /// <summary>
@@ -26,39 +27,40 @@ namespace Chat
         private void OnStartup(object sender, StartupEventArgs e)
         {
 
-            Chat_dbDataSet my_db = new Chat_dbDataSet(); 
-            
+
+            ApplicationContext db =new ApplicationContext();
+            db.Users.Load();
                 bool work = true;
 
                 Login view = new Login();
 
 
 
-            Viwe_Model_Login viewModel = new Viwe_Model_Login(my_db);
+            Viwe_Model_Login viewModel = new Viwe_Model_Login(db);
                 view.DataContext = viewModel;
 
-                //if (viewModel._Visibility_off == null)
-                //    viewModel._Visibility_off = new Action(view.Visibility_off);
+            if (viewModel._Visibility_off == null)
+                viewModel._Visibility_off = new Action(view.Visibility_off);
 
 
-                //if (viewModel._Visibility_on == null)
-                //    viewModel._Visibility_on = new Action(view.Visibility_on);
+            if (viewModel._Visibility_on == null)
+                viewModel._Visibility_on = new Action(view.Visibility_on);
 
-                //if (viewModel._NO == null)
-                //    viewModel._NO = new Action(view.No);
+            if (viewModel._NO == null)
+                viewModel._NO = new Action(view.No);
 
-                //if (viewModel._OK == null)
-                //    viewModel._OK = new Action(view.Ok);
+            if (viewModel._OK == null)
+                viewModel._OK = new Action(view.Ok);
 
-                //if (viewModel._NONE_USER == null)
-                //    viewModel._NONE_USER = new Action(view.None_user);
+            if (viewModel._NONE_USER == null)
+                viewModel._NONE_USER = new Action(view.None_user);
 
 
-                //view.Closing += viewModel.OnWindowClosing;
+         //   view.Closing += viewModel.OnWindowClosing;
 
-                //do
-                //{
-                view.ShowDialog();
+            //do
+            //{
+            view.ShowDialog();
             
 
         }
