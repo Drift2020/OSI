@@ -97,8 +97,6 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -121,22 +119,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Chat_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Code\BindingErrorTraceListener.cs" />
     <Compile Include="Code\ButtonProperties.cs" />
     <Compile Include="Code\DelegateCommand.cs" />
     <Compile Include="Code\PasswordBoxAssistant.cs" />
-    <Compile Include="Model\Contacts.cs" />
-    <Compile Include="Model\Correspondence_Contacts.cs" />
-    <Compile Include="Model\Files.cs" />
-    <Compile Include="Model\List.cs" />
-    <Compile Include="Model\Model1.cs" />
-    <Compile Include="Model\Users.cs" />
-    <Compile Include="Model\Сorrespondence.cs" />
     <Compile Include="MyControls\ImageButtonUC.xaml.cs">
       <DependentUpon>ImageButtonUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteAsync.cs" />
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -198,6 +192,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Chat_dbDataSet.xsc">
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Chat_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Chat_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Chat_dbDataSet.xss">
+      <DependentUpon>Chat_dbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Content\mdl-v1.1.2\bower.json" />
     <None Include="Content\mdl-v1.1.2\LICENSE" />
     <None Include="Content\mdl-v1.1.2\material.min.css.map" />
@@ -245,10 +250,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
