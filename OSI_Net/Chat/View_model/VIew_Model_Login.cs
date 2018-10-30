@@ -15,16 +15,14 @@ namespace Chat.View_model
     class Viwe_Model_Login : View_Model_Base
     {
         #region Pole
-        //Person my_users;
-        //CashDB myDB;
-        //Family Family;
+        
 
 
         public Viwe_Model_Login(Chat_dbDataSet db)
         {
-           // myDB = new CashDB();
-           //my_users = new Person();
-        
+            // myDB = new CashDB();
+            //my_users = new Person();
+          
         }
 
         public Viwe_Model_Login(Visibility Visibility_reg, int level,Chat_dbDataSet db)
