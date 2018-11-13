@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:OSI_Net"
         mc:Ignorable="d"
-        Title="Fast Torrent" Height="437" Width="710">
+        Title="Downloader" Height="437" Width="710">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
